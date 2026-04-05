@@ -14,7 +14,7 @@
         html { scroll-behavior: smooth; font-size: 16px; }
         body {
             font-family: 'Inter', sans-serif;
-            background: #7B4BAE;
+            background: #C17DB8;
             color: #fff;
             overflow-x: hidden;
             line-height: 1.6;
@@ -36,11 +36,11 @@
             --yellow-light: #FFE066;
             --orange: #FF8C42;
             --pink: #E84393;
-            --bg-dark: #7B4BAE;
+            --bg-dark: #C17DB8;
             --bg-card: rgba(107, 63, 160, 0.12);
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --glass-highlight: rgba(255, 255, 255, 0.35);
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.25);
+            --glass-highlight: rgba(255, 255, 255, 0.4);
         }
 
         /* ===== UTILITY ===== */
@@ -61,7 +61,7 @@
         .section-subtitle {
             text-align: center;
             font-size: 1.15rem;
-            color: rgba(255,255,255,0.65);
+            color: rgba(255,255,255,0.85);
             max-width: 650px;
             margin: 0 auto 3.5rem;
             font-weight: 400;
@@ -71,30 +71,34 @@
         /* ===== ANIMATED BACKGROUND BLOBS ===== */
         .bg-blob {
             position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
             pointer-events: none;
             z-index: 0;
             animation: blobFloat 20s ease-in-out infinite alternate;
         }
         .bg-blob--1 {
-            width: 700px; height: 700px;
-            background: radial-gradient(circle, #D946A8 0%, #C026A0 40%, transparent 70%);
-            top: -200px; left: -150px;
-            opacity: 0.7;
+            width: 110vw; height: 80vh;
+            top: -20vh; left: -20vw;
+            background: #7B3FA0;
+            border-radius: 20% 60% 60% 30%/30% 40% 50% 40%;
+            filter: blur(30px);
+            opacity: 0.85;
         }
         .bg-blob--2 {
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, #F5C842 0%, #FF8C42 40%, transparent 70%);
-            top: -100px; right: -200px;
-            opacity: 0.55;
+            width: 60vw; height: 60vh;
+            top: -15vh; right: -10vw;
+            background: linear-gradient(160deg, #F5C842, #FF8C42, #E84393);
+            border-radius: 50% 30% 60% 40%/40% 60% 30% 50%;
+            filter: blur(20px);
+            opacity: 0.7;
             animation-delay: -7s;
         }
         .bg-blob--3 {
-            width: 800px; height: 800px;
-            background: radial-gradient(circle, #E84393 0%, #D63A8C 30%, transparent 65%);
-            bottom: -200px; left: 20%;
-            opacity: 0.5;
+            width: 100vw; height: 60vh;
+            bottom: -15vh; left: -10vw;
+            background: linear-gradient(45deg, #8B3FA0, #E84393, #D946A8);
+            border-radius: 40% 60% 20% 50%/50% 30% 60% 30%;
+            filter: blur(25px);
+            opacity: 0.6;
             animation-delay: -13s;
         }
         @keyframes blobFloat {
@@ -130,42 +134,42 @@
             opacity: 0.08;
         }
         .organic--1 {
-            width: 500px; height: 500px;
-            top: 5%; right: -100px;
-            background: linear-gradient(135deg, #FFD166, #FF8C42, #E84393);
+            width: 70vw; height: 40vh;
+            top: 15%; right: -20vw;
+            background: linear-gradient(160deg, #FFD166, #FF8C42, #E84393);
             border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
             animation: morphShape 15s ease-in-out infinite;
-            opacity: 0.35;
-            filter: blur(40px);
+            opacity: 0.5;
+            filter: blur(10px);
         }
         .organic--2 {
-            width: 450px; height: 450px;
-            top: 35%; left: -120px;
-            background: linear-gradient(135deg, #E84393, #8B5CF6, #6B3FA0);
+            width: 50vw; height: 35vh;
+            top: 5%; left: -15vw;
+            background: linear-gradient(135deg, #6B2FA0, #8B3FA0, #5A1E8A);
             border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
             animation: morphShape 18s ease-in-out infinite reverse;
-            opacity: 0.3;
-            filter: blur(30px);
+            opacity: 0.7;
+            filter: blur(5px);
         }
         .organic--3 {
-            width: 400px; height: 400px;
-            bottom: 10%; right: 5%;
-            background: linear-gradient(135deg, #F5C842, #FF6B6B);
+            width: 55vw; height: 30vh;
+            bottom: 5%; right: -5vw;
+            background: linear-gradient(135deg, #F5C842, #FFB347);
             border-radius: 40% 60% 60% 40% / 70% 30% 70% 30%;
             animation: morphShape 12s ease-in-out infinite;
             animation-delay: -5s;
-            opacity: 0.3;
-            filter: blur(35px);
+            opacity: 0.35;
+            filter: blur(15px);
         }
         .organic--4 {
-            width: 600px; height: 600px;
-            top: 55%; left: 40%;
-            background: linear-gradient(135deg, #D946A8, #FF8C42);
+            width: 60vw; height: 50vh;
+            top: 40%; left: -10vw;
+            background: linear-gradient(135deg, #D946A8, #E84393, #C17DB8);
             border-radius: 50% 50% 30% 70% / 40% 60% 40% 60%;
             animation: morphShape 20s ease-in-out infinite;
             animation-delay: -8s;
-            opacity: 0.2;
-            filter: blur(50px);
+            opacity: 0.4;
+            filter: blur(10px);
         }
         @keyframes morphShape {
             0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; transform: rotate(0deg) scale(1); }
@@ -359,7 +363,7 @@
             transition: background 0.3s, backdrop-filter 0.3s, padding 0.3s;
         }
         .navbar.scrolled {
-            background: rgba(90, 40, 140, 0.9);
+            background: rgba(160, 100, 160, 0.9);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             padding: 10px 0;
@@ -440,7 +444,7 @@
                 radial-gradient(ellipse 90% 70% at 10% 90%, rgba(232,67,147,0.4) 0%, transparent 55%),
                 radial-gradient(ellipse 70% 90% at 90% 10%, rgba(245,200,66,0.35) 0%, transparent 50%),
                 radial-gradient(ellipse 80% 80% at 50% 30%, rgba(90,40,160,0.5) 0%, transparent 60%),
-                #7B4BAE;
+                #C17DB8;
             overflow: hidden;
         }
         .hero::after {
@@ -448,7 +452,7 @@
             position: absolute;
             bottom: 0; left: 0; right: 0;
             height: 120px;
-            background: linear-gradient(transparent, #7B4BAE);
+            background: linear-gradient(transparent, #C17DB8);
             z-index: 1;
         }
         .hero__content { position: relative; z-index: 2; max-width: 900px; }
@@ -458,11 +462,11 @@
             gap: 8px;
             padding: 10px 24px;
             border-radius: 50px;
-            background: rgba(139, 92, 246, 0.15);
-            border: 1px solid rgba(139, 92, 246, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.35);
             font-size: 0.9rem;
             font-weight: 600;
-            color: var(--purple-light);
+            color: #fff;
             margin-bottom: 28px;
             animation: fadeInDown 0.8s ease-out;
         }
@@ -481,7 +485,7 @@
         }
         .hero__subtitle {
             font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.9);
             max-width: 620px;
             margin: 0 auto 20px;
             font-weight: 400;
@@ -583,48 +587,163 @@
             75% { transform: translateY(-25px) rotate(2deg); }
         }
 
-        /* ===== HERO ORBITAL COMPOSITION ===== */
+        /* ===== HERO ROCKET SCENE ===== */
         .hero-scene {
             position: absolute;
-            width: 600px;
-            height: 600px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            inset: 0;
             z-index: 1;
             pointer-events: none;
+            overflow: hidden;
+        }
+        .hero-rocket {
+            position: absolute;
+            right: 6%;
+            top: 50%;
+            transform: translateY(-55%);
+            width: 260px;
+            filter: drop-shadow(0 30px 60px rgba(0,0,0,0.3));
+            animation: rocketFloat 4s ease-in-out infinite;
+        }
+        @keyframes rocketFloat {
+            0%, 100% { transform: translateY(-55%); }
+            50% { transform: translateY(-60%); }
+        }
+        .hero-rocket-glow {
+            position: absolute;
+            right: 4%;
+            top: 68%;
+            width: 160px; height: 220px;
+            background: radial-gradient(ellipse, rgba(245,200,66,0.35), rgba(255,140,66,0.15) 40%, transparent 70%);
+            filter: blur(20px);
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.7; transform: scaleY(1); }
+            50% { opacity: 1; transform: scaleY(1.15); }
+        }
+        .hero-spark {
+            position: absolute;
+            border-radius: 50%;
+            animation: sparkFall linear infinite;
+        }
+        @keyframes sparkFall {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(200px) scale(0.3); }
+        }
+        .hero-spark--1 { right: 16%; top: 72%; width: 5px; height: 5px; background: var(--yellow); animation-duration: 1.5s; }
+        .hero-spark--2 { right: 11%; top: 70%; width: 4px; height: 4px; background: var(--orange); animation-duration: 2s; animation-delay: -0.4s; }
+        .hero-spark--3 { right: 20%; top: 74%; width: 3px; height: 3px; background: #fff; animation-duration: 1.8s; animation-delay: -0.9s; }
+        .hero-spark--4 { right: 14%; top: 68%; width: 4px; height: 4px; background: var(--pink); animation-duration: 2.2s; animation-delay: -1.3s; }
+        .hero-spark--5 { right: 18%; top: 76%; width: 3px; height: 3px; background: var(--yellow); animation-duration: 1.6s; animation-delay: -0.6s; }
+        .hero-banner {
+            position: absolute;
+            right: 2%;
+            top: 85%;
+            animation: rocketFloat 4s ease-in-out infinite;
+        }
+        .hero-banner__text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 0.7rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #fff;
+            background: linear-gradient(135deg, rgba(107,63,160,0.6), rgba(139,92,246,0.4));
+            padding: 10px 28px;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            white-space: nowrap;
+        }
+        @media (max-width: 900px) {
+            .hero-rocket { width: 180px; right: 2%; opacity: 0.5; }
+            .hero-banner { display: none; }
+        }
+        @media (max-width: 600px) {
+            .hero-rocket { width: 120px; right: -2%; opacity: 0.3; }
+            .hero-rocket-glow, .hero-spark, .hero-banner { display: none; }
         }
 
-        /* Central core — pulsing glow */
+        /* (unused legacy styles below kept for compat) */
+        .hero-core, .hero-beam, .beam-spark, .orbit, .orbit-node, .particles, .particle, .hero-connections { display: none; }
+        /* END LEGACY */
         .hero-core {
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             width: 120px; height: 120px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(245,200,66,0.6) 0%, rgba(255,140,66,0.3) 40%, transparent 70%);
+            background: radial-gradient(circle, rgba(245,200,66,0.5) 0%, rgba(255,140,66,0.2) 40%, transparent 70%);
             animation: corePulse 4s ease-in-out infinite;
         }
         .hero-core::before {
             content: '';
             position: absolute;
-            inset: -20px;
+            inset: -30px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(245,200,66,0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(245,200,66,0.12) 0%, transparent 70%);
             animation: corePulse 4s ease-in-out infinite 0.5s;
         }
         .hero-core::after {
             content: '';
             position: absolute;
-            inset: -60px;
+            inset: -70px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(245,200,66,0.06) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(245,200,66,0.05) 0%, transparent 70%);
             animation: corePulse 4s ease-in-out infinite 1s;
         }
         @keyframes corePulse {
             0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.2); opacity: 0.7; }
+            50% { transform: scale(1.15); opacity: 0.7; }
         }
+
+        /* Light beam shooting upward from core */
+        .hero-beam {
+            position: absolute;
+            left: 50%;
+            bottom: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 280px;
+            background: linear-gradient(0deg, rgba(245,200,66,0.5) 0%, rgba(255,200,100,0.2) 40%, transparent 100%);
+            border-radius: 3px;
+            filter: blur(3px);
+            animation: beamPulse 3s ease-in-out infinite;
+        }
+        .hero-beam::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            width: 22px;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(245,200,66,0.15) 0%, transparent 100%);
+            border-radius: 10px;
+            filter: blur(6px);
+        }
+        @keyframes beamPulse {
+            0%, 100% { opacity: 0.7; height: 280px; }
+            50% { opacity: 1; height: 320px; }
+        }
+
+        /* Sparkle trail along the beam */
+        .beam-spark {
+            position: absolute;
+            left: 50%;
+            border-radius: 50%;
+            background: var(--yellow);
+            animation: beamSparkRise linear infinite;
+        }
+        @keyframes beamSparkRise {
+            0% { transform: translate(-50%, 0) scale(1); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translate(-50%, -350px) scale(0); opacity: 0; }
+        }
+        .beam-spark:nth-child(1) { bottom: 48%; width: 4px; height: 4px; animation-duration: 2.5s; animation-delay: 0s; }
+        .beam-spark:nth-child(2) { bottom: 48%; width: 3px; height: 3px; animation-duration: 3s; animation-delay: -0.8s; background: #fff; }
+        .beam-spark:nth-child(3) { bottom: 48%; width: 5px; height: 5px; animation-duration: 2s; animation-delay: -1.5s; background: var(--orange); }
+        .beam-spark:nth-child(4) { bottom: 48%; width: 3px; height: 3px; animation-duration: 3.5s; animation-delay: -2.2s; }
+        .beam-spark:nth-child(5) { bottom: 48%; width: 4px; height: 4px; animation-duration: 2.8s; animation-delay: -0.4s; background: rgba(255,255,255,0.8); }
 
         /* Orbit rings */
         .orbit {
@@ -913,7 +1032,7 @@
             height: 22px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--violet), var(--purple));
-            border: 3px solid #7B4BAE;
+            border: 3px solid #C17DB8;
             box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
             z-index: 2;
         }
@@ -1236,7 +1355,7 @@
             display: none;
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(80, 35, 130, 0.97);
+            background: rgba(160, 100, 155, 0.97);
             backdrop-filter: blur(20px);
             z-index: 999;
             flex-direction: column;
@@ -1399,58 +1518,85 @@
 
     <!-- HERO -->
     <section class="hero" id="hero">
-        <!-- ===== ORBITAL COMPOSITION ===== -->
+        <!-- ===== ROCKET SCENE ===== -->
         <div class="hero-scene">
-            <!-- Connection lines -->
-            <svg class="hero-connections" viewBox="0 0 600 600">
-                <line x1="300" y1="300" x2="300" y2="80"/>
-                <line x1="300" y1="300" x2="480" y2="200"/>
-                <line x1="300" y1="300" x2="120" y2="200"/>
-                <line x1="300" y1="300" x2="480" y2="430"/>
-                <line x1="300" y1="300" x2="120" y2="430"/>
-                <line x1="300" y1="300" x2="300" y2="520"/>
+            <!-- Glow under rocket -->
+            <div class="hero-rocket-glow"></div>
+            <!-- Exhaust sparks -->
+            <div class="hero-spark hero-spark--1"></div>
+            <div class="hero-spark hero-spark--2"></div>
+            <div class="hero-spark hero-spark--3"></div>
+            <div class="hero-spark hero-spark--4"></div>
+            <div class="hero-spark hero-spark--5"></div>
+            <!-- SVG Rocket — sleek, detailed, gradient fills -->
+            <svg class="hero-rocket" viewBox="0 0 200 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Flame outer -->
+                <ellipse cx="100" cy="430" rx="28" ry="50" fill="url(#flameOuter)" opacity="0.6">
+                    <animate attributeName="ry" values="50;58;50" dur="0.3s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0.6;0.4;0.6" dur="0.25s" repeatCount="indefinite"/>
+                </ellipse>
+                <!-- Flame inner -->
+                <ellipse cx="100" cy="420" rx="16" ry="42" fill="url(#flameInner)">
+                    <animate attributeName="ry" values="42;48;42" dur="0.2s" repeatCount="indefinite"/>
+                </ellipse>
+                <!-- Flame core -->
+                <ellipse cx="100" cy="410" rx="8" ry="28" fill="#fff" opacity="0.8">
+                    <animate attributeName="ry" values="28;33;28" dur="0.15s" repeatCount="indefinite"/>
+                </ellipse>
+                <!-- Left fin -->
+                <path d="M72 340 L50 390 L78 380 Z" fill="url(#finGrad)" />
+                <!-- Right fin -->
+                <path d="M128 340 L150 390 L122 380 Z" fill="url(#finGrad)" />
+                <!-- Body -->
+                <rect x="72" y="140" width="56" height="250" rx="6" fill="url(#bodyGrad)" />
+                <!-- Body highlight -->
+                <rect x="74" y="140" width="20" height="250" rx="4" fill="rgba(255,255,255,0.15)" />
+                <!-- Nose cone -->
+                <path d="M72 140 Q72 60 100 20 Q128 60 128 140 Z" fill="url(#noseGrad)" />
+                <!-- Nose highlight -->
+                <path d="M82 130 Q85 70 100 35 Q102 70 104 130 Z" fill="rgba(255,255,255,0.2)" />
+                <!-- Window -->
+                <circle cx="100" cy="200" r="18" fill="url(#windowGrad)" stroke="rgba(255,255,255,0.4)" stroke-width="2.5" />
+                <!-- Window reflection -->
+                <ellipse cx="94" cy="194" rx="6" ry="8" fill="rgba(255,255,255,0.3)" />
+                <!-- Stripe -->
+                <rect x="72" y="280" width="56" height="4" fill="var(--yellow)" opacity="0.7" rx="2" />
+                <rect x="72" y="300" width="56" height="2" fill="rgba(255,255,255,0.2)" rx="1" />
+                <!-- Gradients -->
+                <defs>
+                    <linearGradient id="bodyGrad" x1="72" y1="140" x2="128" y2="390" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#f0e6f6"/>
+                        <stop offset="100%" stop-color="#d4bce6"/>
+                    </linearGradient>
+                    <linearGradient id="noseGrad" x1="100" y1="20" x2="100" y2="140" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#F5C842"/>
+                        <stop offset="100%" stop-color="#FFB347"/>
+                    </linearGradient>
+                    <linearGradient id="finGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#F5C842"/>
+                        <stop offset="100%" stop-color="#FF8C42"/>
+                    </linearGradient>
+                    <radialGradient id="windowGrad" cx="50%" cy="40%">
+                        <stop offset="0%" stop-color="#a78bfa"/>
+                        <stop offset="100%" stop-color="#4c1d95"/>
+                    </radialGradient>
+                    <linearGradient id="flameInner" x1="100" y1="380" x2="100" y2="470" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#FFF"/>
+                        <stop offset="30%" stop-color="#F5C842"/>
+                        <stop offset="70%" stop-color="#FF8C42"/>
+                        <stop offset="100%" stop-color="#E84393" stop-opacity="0"/>
+                    </linearGradient>
+                    <linearGradient id="flameOuter" x1="100" y1="380" x2="100" y2="480" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#F5C842" stop-opacity="0.6"/>
+                        <stop offset="50%" stop-color="#FF8C42" stop-opacity="0.3"/>
+                        <stop offset="100%" stop-color="#E84393" stop-opacity="0"/>
+                    </linearGradient>
+                </defs>
             </svg>
-
-            <!-- Rising particles -->
-            <div class="particles">
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
+            <!-- Banner -->
+            <div class="hero-banner">
+                <div class="hero-banner__text">Форум молодых талантов</div>
             </div>
-
-            <!-- Orbit ring 3 (outermost) -->
-            <div class="orbit orbit--3">
-                <!-- Rocket — career takeoff -->
-                <div class="orbit-node"><svg viewBox="0 0 24 24" fill="none" stroke="#F5C842" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 3 0 3 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-3 0-3"/></svg></div>
-                <!-- Globe — geography -->
-                <div class="orbit-node"><svg viewBox="0 0 24 24" fill="none" stroke="#6ee7b7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
-                <!-- Trophy — success -->
-                <div class="orbit-node"><svg viewBox="0 0 24 24" fill="none" stroke="#FF8C42" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 010-5C7 4 7 7 7 7"/><path d="M18 9h1.5a2.5 2.5 0 000-5C17 4 17 7 17 7"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0012 0V2z"/></svg></div>
-            </div>
-
-            <!-- Orbit ring 2 -->
-            <div class="orbit orbit--2">
-                <!-- Users — networking -->
-                <div class="orbit-node"><svg viewBox="0 0 24 24" fill="none" stroke="#E84393" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
-                <!-- Lightbulb — ideas -->
-                <div class="orbit-node"><svg viewBox="0 0 24 24" fill="none" stroke="#F5C842" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2v1"/><path d="M12 7a4 4 0 014 4 7 7 0 01-1 4H9a7 7 0 01-1-4 4 4 0 014-4z"/><path d="M20 6l-1.5 1.5M4 6l1.5 1.5M22 12h-2M4 12H2"/></svg></div>
-            </div>
-
-            <!-- Orbit ring 1 (innermost) -->
-            <div class="orbit orbit--1">
-                <!-- Star -->
-                <div class="orbit-node"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-                <!-- Briefcase — career -->
-                <div class="orbit-node"><svg viewBox="0 0 24 24" fill="none" stroke="#9B6FD0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><path d="M12 12v.01M2 12h20"/></svg></div>
-            </div>
-
-            <!-- Central glowing core -->
-            <div class="hero-core"></div>
         </div>
 
         <div class="hero__content">
@@ -2001,17 +2147,15 @@
 
         // ===== PARALLAX MOUSE on GLASS ICONS =====
         document.addEventListener('mousemove', (e) => {
-            const icons = document.querySelectorAll('.orbit-node');
+            const rocket = document.querySelector('.hero-rocket');
+            if (!rocket) return;
             const cx = window.innerWidth / 2;
             const cy = window.innerHeight / 2;
             const dx = (e.clientX - cx) / cx;
             const dy = (e.clientY - cy) / cy;
-            icons.forEach((icon, i) => {
-                const factor = (i + 1) * 8;
-                const rx = dy * factor;
-                const ry = -dx * factor;
-                icon.style.transform = `perspective(600px) rotateX(${5 + rx}deg) rotateY(${-5 + ry}deg)`;
-            });
+            rocket.style.transform = `translateY(calc(-55% + ${dy * 8}px))`;
+            const banner = document.querySelector('.hero-banner');
+            if (banner) banner.style.transform = `translate(${dx * 6}px, ${dy * 4}px)`;
         });
 
         // ===== SMOOTH SCROLL for anchor links =====
