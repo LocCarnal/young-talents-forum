@@ -14,7 +14,7 @@
         html { scroll-behavior: smooth; font-size: 16px; }
         body {
             font-family: 'Inter', sans-serif;
-            background: #C17DB8;
+            background: #9B5DAE;
             color: #fff;
             overflow-x: hidden;
             line-height: 1.6;
@@ -36,7 +36,7 @@
             --yellow-light: #FFE066;
             --orange: #FF8C42;
             --pink: #E84393;
-            --bg-dark: #C17DB8;
+            --bg-dark: #9B5DAE;
             --bg-card: rgba(107, 63, 160, 0.12);
             --glass-bg: rgba(255, 255, 255, 0.15);
             --glass-border: rgba(255, 255, 255, 0.25);
@@ -68,13 +68,41 @@
         }
         section { padding: 100px 0; position: relative; }
 
-        /* ===== ANIMATED BACKGROUND BLOBS ===== */
-        .bg-blob {
+        /* ===== LAYERED SVG WAVE BACKGROUND ===== */
+        .bg-canvas {
             position: fixed;
-            pointer-events: none;
+            inset: 0;
             z-index: 0;
-            animation: blobFloat 20s ease-in-out infinite alternate;
+            pointer-events: none;
+            overflow: hidden;
+            background: linear-gradient(160deg, #7B3FA0 0%, #9B5DAE 30%, #B872B8 55%, #D4A0CC 80%, #C882B8 100%);
         }
+        .bg-wave {
+            position: absolute;
+            width: 200%;
+            left: -50%;
+        }
+        /* Deep purple wave — sweeps from top-left */
+        .bg-wave--1 {
+            top: -15%;
+            animation: waveSlide 30s ease-in-out infinite alternate;
+        }
+        /* Yellow-orange-pink wave — top-right flow */
+        .bg-wave--2 {
+            top: -20%;
+            animation: waveSlide 25s ease-in-out infinite alternate-reverse;
+        }
+        /* Magenta accent — bottom flow */
+        .bg-wave--3 {
+            bottom: -25%;
+            animation: waveSlide 35s ease-in-out infinite alternate;
+            animation-delay: -10s;
+        }
+        @keyframes waveSlide {
+            0% { transform: translateX(0) rotate(0deg); }
+            100% { transform: translateX(5%) rotate(2deg); }
+        }
+        .bg-blob { display: none; }
         .bg-blob--1 {
             width: 110vw; height: 80vh;
             top: -20vh; left: -20vw;
@@ -164,7 +192,7 @@
         .organic--4 {
             width: 60vw; height: 50vh;
             top: 40%; left: -10vw;
-            background: linear-gradient(135deg, #D946A8, #E84393, #C17DB8);
+            background: linear-gradient(135deg, #D946A8, #E84393, #9B5DAE);
             border-radius: 50% 50% 30% 70% / 40% 60% 40% 60%;
             animation: morphShape 20s ease-in-out infinite;
             animation-delay: -8s;
@@ -440,11 +468,7 @@
             text-align: center;
             position: relative;
             padding: 140px 24px 100px;
-            background:
-                radial-gradient(ellipse 90% 70% at 10% 90%, rgba(232,67,147,0.4) 0%, transparent 55%),
-                radial-gradient(ellipse 70% 90% at 90% 10%, rgba(245,200,66,0.35) 0%, transparent 50%),
-                radial-gradient(ellipse 80% 80% at 50% 30%, rgba(90,40,160,0.5) 0%, transparent 60%),
-                #C17DB8;
+            background: transparent;
             overflow: hidden;
         }
         .hero::after {
@@ -452,7 +476,7 @@
             position: absolute;
             bottom: 0; left: 0; right: 0;
             height: 120px;
-            background: linear-gradient(transparent, #C17DB8);
+            background: linear-gradient(transparent, rgba(155,93,174,0.6));
             z-index: 1;
         }
         .hero__content { position: relative; z-index: 2; max-width: 900px; }
@@ -587,7 +611,7 @@
             75% { transform: translateY(-25px) rotate(2deg); }
         }
 
-        /* ===== HERO ROCKET SCENE ===== */
+        /* ===== HERO — GOLDEN ASCENT TRAIL ===== */
         .hero-scene {
             position: absolute;
             inset: 0;
@@ -595,77 +619,116 @@
             pointer-events: none;
             overflow: hidden;
         }
-        .hero-rocket {
+        /* The ascending golden trail — a curved path with glow */
+        .ascent-trail {
             position: absolute;
-            right: 6%;
-            top: 50%;
-            transform: translateY(-55%);
-            width: 260px;
-            filter: drop-shadow(0 30px 60px rgba(0,0,0,0.3));
-            animation: rocketFloat 4s ease-in-out infinite;
+            right: 8%;
+            bottom: 5%;
+            width: 300px;
+            height: 90%;
         }
-        @keyframes rocketFloat {
-            0%, 100% { transform: translateY(-55%); }
-            50% { transform: translateY(-60%); }
+        .ascent-trail svg { width: 100%; height: 100%; }
+        .trail-path {
+            fill: none;
+            stroke: url(#trailGrad);
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-dasharray: 800;
+            stroke-dashoffset: 800;
+            animation: drawTrail 4s ease-out forwards, trailGlow 3s ease-in-out 4s infinite alternate;
+            filter: drop-shadow(0 0 8px rgba(245,200,66,0.5));
         }
-        .hero-rocket-glow {
+        @keyframes drawTrail {
+            to { stroke-dashoffset: 0; }
+        }
+        @keyframes trailGlow {
+            0% { filter: drop-shadow(0 0 8px rgba(245,200,66,0.4)); }
+            100% { filter: drop-shadow(0 0 20px rgba(245,200,66,0.7)); }
+        }
+        /* Glowing orb at the tip — the "you" ascending */
+        .ascent-orb {
             position: absolute;
-            right: 4%;
-            top: 68%;
-            width: 160px; height: 220px;
-            background: radial-gradient(ellipse, rgba(245,200,66,0.35), rgba(255,140,66,0.15) 40%, transparent 70%);
-            filter: blur(20px);
-            animation: glowPulse 2s ease-in-out infinite;
-        }
-        @keyframes glowPulse {
-            0%, 100% { opacity: 0.7; transform: scaleY(1); }
-            50% { opacity: 1; transform: scaleY(1.15); }
-        }
-        .hero-spark {
-            position: absolute;
+            width: 20px; height: 20px;
             border-radius: 50%;
-            animation: sparkFall linear infinite;
+            background: radial-gradient(circle, #fff 0%, #F5C842 40%, rgba(245,200,66,0) 70%);
+            box-shadow: 0 0 30px rgba(245,200,66,0.6), 0 0 60px rgba(245,200,66,0.3);
+            offset-path: path('M150 700 Q80 500 180 350 Q250 220 140 100 Q100 40 160 0');
+            animation: orbAscend 4s ease-out forwards, orbPulse 2s ease-in-out 4s infinite alternate;
+            opacity: 0;
         }
-        @keyframes sparkFall {
-            0% { opacity: 1; transform: translateY(0) scale(1); }
-            100% { opacity: 0; transform: translateY(200px) scale(0.3); }
+        @keyframes orbAscend {
+            0% { offset-distance: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            100% { offset-distance: 100%; opacity: 1; }
         }
-        .hero-spark--1 { right: 16%; top: 72%; width: 5px; height: 5px; background: var(--yellow); animation-duration: 1.5s; }
-        .hero-spark--2 { right: 11%; top: 70%; width: 4px; height: 4px; background: var(--orange); animation-duration: 2s; animation-delay: -0.4s; }
-        .hero-spark--3 { right: 20%; top: 74%; width: 3px; height: 3px; background: #fff; animation-duration: 1.8s; animation-delay: -0.9s; }
-        .hero-spark--4 { right: 14%; top: 68%; width: 4px; height: 4px; background: var(--pink); animation-duration: 2.2s; animation-delay: -1.3s; }
-        .hero-spark--5 { right: 18%; top: 76%; width: 3px; height: 3px; background: var(--yellow); animation-duration: 1.6s; animation-delay: -0.6s; }
-        .hero-banner {
+        @keyframes orbPulse {
+            0% { transform: scale(1); box-shadow: 0 0 30px rgba(245,200,66,0.6), 0 0 60px rgba(245,200,66,0.3); }
+            100% { transform: scale(1.4); box-shadow: 0 0 50px rgba(245,200,66,0.8), 0 0 90px rgba(245,200,66,0.4); }
+        }
+        /* Sparkle particles along the trail */
+        .trail-sparkle {
             position: absolute;
-            right: 2%;
-            top: 85%;
-            animation: rocketFloat 4s ease-in-out infinite;
+            width: 4px; height: 4px;
+            border-radius: 50%;
+            offset-path: path('M150 700 Q80 500 180 350 Q250 220 140 100 Q100 40 160 0');
+            animation: sparkleMove linear infinite;
+            opacity: 0;
         }
-        .hero-banner__text {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 0.7rem;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            color: #fff;
-            background: linear-gradient(135deg, rgba(107,63,160,0.6), rgba(139,92,246,0.4));
-            padding: 10px 28px;
-            border-radius: 50px;
-            border: 1px solid rgba(255,255,255,0.3);
+        .trail-sparkle:nth-child(1) { background: #F5C842; animation-duration: 6s; animation-delay: 1s; width: 5px; height: 5px; }
+        .trail-sparkle:nth-child(2) { background: #fff; animation-duration: 7s; animation-delay: 1.8s; width: 3px; height: 3px; }
+        .trail-sparkle:nth-child(3) { background: #FF8C42; animation-duration: 5.5s; animation-delay: 2.5s; }
+        .trail-sparkle:nth-child(4) { background: #E84393; animation-duration: 8s; animation-delay: 0.5s; width: 3px; height: 3px; }
+        .trail-sparkle:nth-child(5) { background: #F5C842; animation-duration: 6.5s; animation-delay: 3.2s; width: 5px; height: 5px; }
+        .trail-sparkle:nth-child(6) { background: #fff; animation-duration: 7.5s; animation-delay: 4s; width: 3px; height: 3px; }
+        @keyframes sparkleMove {
+            0% { offset-distance: 100%; opacity: 0; }
+            5% { opacity: 1; }
+            90% { opacity: 0.8; }
+            100% { offset-distance: 0%; opacity: 0; }
+        }
+        /* Floating achievement icons near trail */
+        .trail-icon {
+            position: absolute;
+            width: 44px; height: 44px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.25);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            white-space: nowrap;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.3);
+            animation: iconReveal 0.6s ease-out both, iconBob 4s ease-in-out infinite;
+        }
+        .trail-icon::before {
+            content: '';
+            position: absolute;
+            top: 2px; left: 15%; right: 15%;
+            height: 35%;
+            border-radius: 50%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.25), transparent);
+        }
+        .trail-icon svg { width: 22px; height: 22px; }
+        .trail-icon--1 { right: 60px; top: 65%; animation-delay: 1.5s, 0s; }
+        .trail-icon--2 { right: 10px; top: 40%; animation-delay: 2.5s, -1s; }
+        .trail-icon--3 { right: 80px; top: 20%; animation-delay: 3.5s, -2s; }
+        @keyframes iconReveal {
+            from { opacity: 0; transform: scale(0.5) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        @keyframes iconBob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
         @media (max-width: 900px) {
-            .hero-rocket { width: 180px; right: 2%; opacity: 0.5; }
-            .hero-banner { display: none; }
+            .ascent-trail { width: 200px; right: 2%; opacity: 0.5; }
+            .trail-icon { display: none; }
         }
         @media (max-width: 600px) {
-            .hero-rocket { width: 120px; right: -2%; opacity: 0.3; }
-            .hero-rocket-glow, .hero-spark, .hero-banner { display: none; }
+            .ascent-trail { width: 150px; right: -2%; opacity: 0.3; }
+            .trail-sparkle, .trail-icon { display: none; }
         }
-
-        /* (unused legacy styles below kept for compat) */
         .hero-core, .hero-beam, .beam-spark, .orbit, .orbit-node, .particles, .particle, .hero-connections { display: none; }
         /* END LEGACY */
         .hero-core {
@@ -1032,7 +1095,7 @@
             height: 22px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--violet), var(--purple));
-            border: 3px solid #C17DB8;
+            border: 3px solid #9B5DAE;
             box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
             z-index: 2;
         }
@@ -1467,25 +1530,34 @@
     </style>
 </head>
 <body>
-    <!-- Background blobs -->
-    <div class="bg-blob bg-blob--1"></div>
-    <div class="bg-blob bg-blob--2"></div>
-    <div class="bg-blob bg-blob--3"></div>
-
-    <!-- Decorative organic shapes (like presentation) -->
-    <div class="organic organic--1"></div>
-    <div class="organic organic--2"></div>
-    <div class="organic organic--3"></div>
-    <div class="organic organic--4"></div>
-
-    <!-- Decorative accents -->
-    <div class="decor-circle decor-circle--1"></div>
-    <div class="decor-circle decor-circle--2"></div>
-    <div class="decor-circle decor-circle--3"></div>
-    <div class="decor-circle decor-circle--dots"></div>
-    <div class="decor-circle decor-circle--dots2"></div>
-    <div class="decor-line decor-line--1"></div>
-    <div class="decor-line decor-line--2"></div>
+    <!-- SVG Wave Background -->
+    <div class="bg-canvas">
+        <!-- Deep purple wave — top-left -->
+        <svg class="bg-wave bg-wave--1" viewBox="0 0 1600 900" preserveAspectRatio="none">
+            <path d="M-100 0 C200 50, 400 300, 300 500 Q200 700, 600 750 Q900 800, 800 400 Q750 200, 1000 100 L1600 0 Z" fill="#6B2FA0" opacity="0.7"/>
+        </svg>
+        <!-- Yellow-orange-pink wave — top-right flowing down -->
+        <svg class="bg-wave bg-wave--2" viewBox="0 0 1600 900" preserveAspectRatio="none">
+            <path d="M800 -50 Q1000 50, 1100 200 C1250 400, 1400 250, 1650 350 L1650 -50 Z" fill="url(#waveYellow)"/>
+            <path d="M600 -50 Q750 100, 650 300 C550 480, 850 500, 1000 400 Q1200 280, 1300 450 C1400 600, 1600 400, 1650 500 L1650 -50 Z" fill="url(#wavePink)" opacity="0.6"/>
+            <defs>
+                <linearGradient id="waveYellow" x1="800" y1="0" x2="1400" y2="400" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#F5C842"/>
+                    <stop offset="50%" stop-color="#FF8C42"/>
+                    <stop offset="100%" stop-color="#E84393"/>
+                </linearGradient>
+                <linearGradient id="wavePink" x1="600" y1="0" x2="1200" y2="500" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#E84393"/>
+                    <stop offset="100%" stop-color="#D946A8"/>
+                </linearGradient>
+            </defs>
+        </svg>
+        <!-- Magenta wave — bottom -->
+        <svg class="bg-wave bg-wave--3" viewBox="0 0 1600 900" preserveAspectRatio="none">
+            <path d="M-100 900 C100 700, 400 800, 600 650 Q800 500, 1000 600 C1200 700, 1400 550, 1700 700 L1700 900 Z" fill="#8B3FA0" opacity="0.5"/>
+            <path d="M-100 900 C200 750, 500 850, 700 700 Q900 550, 1100 650 C1300 750, 1500 600, 1700 750 L1700 900 Z" fill="#D946A8" opacity="0.3"/>
+        </svg>
+    </div>
 
     <!-- Navbar -->
     <nav class="navbar" id="navbar">
@@ -1518,85 +1590,35 @@
 
     <!-- HERO -->
     <section class="hero" id="hero">
-        <!-- ===== ROCKET SCENE ===== -->
+        <!-- ===== GOLDEN ASCENT TRAIL ===== -->
         <div class="hero-scene">
-            <!-- Glow under rocket -->
-            <div class="hero-rocket-glow"></div>
-            <!-- Exhaust sparks -->
-            <div class="hero-spark hero-spark--1"></div>
-            <div class="hero-spark hero-spark--2"></div>
-            <div class="hero-spark hero-spark--3"></div>
-            <div class="hero-spark hero-spark--4"></div>
-            <div class="hero-spark hero-spark--5"></div>
-            <!-- SVG Rocket — sleek, detailed, gradient fills -->
-            <svg class="hero-rocket" viewBox="0 0 200 480" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Flame outer -->
-                <ellipse cx="100" cy="430" rx="28" ry="50" fill="url(#flameOuter)" opacity="0.6">
-                    <animate attributeName="ry" values="50;58;50" dur="0.3s" repeatCount="indefinite"/>
-                    <animate attributeName="opacity" values="0.6;0.4;0.6" dur="0.25s" repeatCount="indefinite"/>
-                </ellipse>
-                <!-- Flame inner -->
-                <ellipse cx="100" cy="420" rx="16" ry="42" fill="url(#flameInner)">
-                    <animate attributeName="ry" values="42;48;42" dur="0.2s" repeatCount="indefinite"/>
-                </ellipse>
-                <!-- Flame core -->
-                <ellipse cx="100" cy="410" rx="8" ry="28" fill="#fff" opacity="0.8">
-                    <animate attributeName="ry" values="28;33;28" dur="0.15s" repeatCount="indefinite"/>
-                </ellipse>
-                <!-- Left fin -->
-                <path d="M72 340 L50 390 L78 380 Z" fill="url(#finGrad)" />
-                <!-- Right fin -->
-                <path d="M128 340 L150 390 L122 380 Z" fill="url(#finGrad)" />
-                <!-- Body -->
-                <rect x="72" y="140" width="56" height="250" rx="6" fill="url(#bodyGrad)" />
-                <!-- Body highlight -->
-                <rect x="74" y="140" width="20" height="250" rx="4" fill="rgba(255,255,255,0.15)" />
-                <!-- Nose cone -->
-                <path d="M72 140 Q72 60 100 20 Q128 60 128 140 Z" fill="url(#noseGrad)" />
-                <!-- Nose highlight -->
-                <path d="M82 130 Q85 70 100 35 Q102 70 104 130 Z" fill="rgba(255,255,255,0.2)" />
-                <!-- Window -->
-                <circle cx="100" cy="200" r="18" fill="url(#windowGrad)" stroke="rgba(255,255,255,0.4)" stroke-width="2.5" />
-                <!-- Window reflection -->
-                <ellipse cx="94" cy="194" rx="6" ry="8" fill="rgba(255,255,255,0.3)" />
-                <!-- Stripe -->
-                <rect x="72" y="280" width="56" height="4" fill="var(--yellow)" opacity="0.7" rx="2" />
-                <rect x="72" y="300" width="56" height="2" fill="rgba(255,255,255,0.2)" rx="1" />
-                <!-- Gradients -->
-                <defs>
-                    <linearGradient id="bodyGrad" x1="72" y1="140" x2="128" y2="390" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stop-color="#f0e6f6"/>
-                        <stop offset="100%" stop-color="#d4bce6"/>
-                    </linearGradient>
-                    <linearGradient id="noseGrad" x1="100" y1="20" x2="100" y2="140" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stop-color="#F5C842"/>
-                        <stop offset="100%" stop-color="#FFB347"/>
-                    </linearGradient>
-                    <linearGradient id="finGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#F5C842"/>
-                        <stop offset="100%" stop-color="#FF8C42"/>
-                    </linearGradient>
-                    <radialGradient id="windowGrad" cx="50%" cy="40%">
-                        <stop offset="0%" stop-color="#a78bfa"/>
-                        <stop offset="100%" stop-color="#4c1d95"/>
-                    </radialGradient>
-                    <linearGradient id="flameInner" x1="100" y1="380" x2="100" y2="470" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stop-color="#FFF"/>
-                        <stop offset="30%" stop-color="#F5C842"/>
-                        <stop offset="70%" stop-color="#FF8C42"/>
-                        <stop offset="100%" stop-color="#E84393" stop-opacity="0"/>
-                    </linearGradient>
-                    <linearGradient id="flameOuter" x1="100" y1="380" x2="100" y2="480" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stop-color="#F5C842" stop-opacity="0.6"/>
-                        <stop offset="50%" stop-color="#FF8C42" stop-opacity="0.3"/>
-                        <stop offset="100%" stop-color="#E84393" stop-opacity="0"/>
-                    </linearGradient>
-                </defs>
-            </svg>
-            <!-- Banner -->
-            <div class="hero-banner">
-                <div class="hero-banner__text">Форум молодых талантов</div>
+            <div class="ascent-trail">
+                <!-- The curved golden path -->
+                <svg viewBox="0 0 300 700" preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="trailGrad" x1="0" y1="700" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="rgba(245,200,66,0.1)"/>
+                            <stop offset="40%" stop-color="#F5C842"/>
+                            <stop offset="70%" stop-color="#FFE066"/>
+                            <stop offset="100%" stop-color="#fff"/>
+                        </linearGradient>
+                    </defs>
+                    <path class="trail-path" d="M150 700 Q80 500 180 350 Q250 220 140 100 Q100 40 160 0"/>
+                </svg>
+                <!-- Glowing orb riding the path -->
+                <div class="ascent-orb"></div>
+                <!-- Sparkles following the trail -->
+                <div class="trail-sparkle"></div>
+                <div class="trail-sparkle"></div>
+                <div class="trail-sparkle"></div>
+                <div class="trail-sparkle"></div>
+                <div class="trail-sparkle"></div>
+                <div class="trail-sparkle"></div>
             </div>
+            <!-- Achievement icons floating near trail -->
+            <div class="trail-icon trail-icon--1"><svg viewBox="0 0 24 24" fill="none" stroke="#F5C842" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <div class="trail-icon trail-icon--2"><svg viewBox="0 0 24 24" fill="none" stroke="#6ee7b7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <div class="trail-icon trail-icon--3"><svg viewBox="0 0 24 24" fill="none" stroke="#FF8C42" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 010-5C7 4 7 7 7 7"/><path d="M18 9h1.5a2.5 2.5 0 000-5C17 4 17 7 17 7"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0012 0V2z"/></svg></div>
         </div>
 
         <div class="hero__content">
@@ -2145,17 +2167,18 @@
         }, { threshold: 0.5 });
         counters.forEach(c => counterObserver.observe(c));
 
-        // ===== PARALLAX MOUSE on GLASS ICONS =====
+        // ===== PARALLAX MOUSE =====
         document.addEventListener('mousemove', (e) => {
-            const rocket = document.querySelector('.hero-rocket');
-            if (!rocket) return;
             const cx = window.innerWidth / 2;
             const cy = window.innerHeight / 2;
             const dx = (e.clientX - cx) / cx;
             const dy = (e.clientY - cy) / cy;
-            rocket.style.transform = `translateY(calc(-55% + ${dy * 8}px))`;
-            const banner = document.querySelector('.hero-banner');
-            if (banner) banner.style.transform = `translate(${dx * 6}px, ${dy * 4}px)`;
+            document.querySelectorAll('.trail-icon').forEach((icon, i) => {
+                const f = (i + 1) * 6;
+                icon.style.transform = `translate(${dx * f}px, ${dy * f}px)`;
+            });
+            const trail = document.querySelector('.ascent-trail');
+            if (trail) trail.style.transform = `translate(${dx * 4}px, ${dy * 3}px)`;
         });
 
         // ===== SMOOTH SCROLL for anchor links =====
